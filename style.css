@@ -1,5 +1,15 @@
-.task-div{
-  border: solid 1px black;
-  padding: px;
-  margin: 5px;
-}
+.creatd-div{
+    margin: 5px;
+    padding: 10px;
+    border: solid 1px black;
+  }
+  .edit-btn
+  {
+    margin: 10px;
+  }
+  .delete-btn{
+
+  }
+
+      
+  
