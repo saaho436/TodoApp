@@ -134,11 +134,29 @@ button.addEventListener("click", function() {
         } else if (Edit.textContent === "Save") {
             // Save the edited content and replace the input field with the updated text
             textSpan.textContent = createdDiv.querySelector("input").value;
+            const currentDate = new Date();
+            const editDate = currentDate.toLocaleDateString(); // Format the date (e.g., 9/27/2024)
+            const editTime = currentDate.toLocaleTimeString(); // Format the time (e.g., 2:34 PM)
+            const editeddate = document.createElement("span");
+            // editeddate.textContent = ` (Edited on: ${editDate} at ${editTime})`;
+            dateSpan.textContent = ` (Added on: ${formattedDate} at ${formattedTime} Edited on: ${editDate} at ${editTime})`;
+            createdDiv.appendChild(editeddate); // Append date and time
+          
+
+
+
             createdDiv.replaceChild(textSpan, createdDiv.querySelector("input")); // Replace input with updated span
+
 
             Edit.textContent = "Edit"; // Change "Save" back to "Edit"
         }
     });
+
+
+    Delete.addEventListener("click",function(){
+        Taskcontainer.removeChild(createdDiv);
+    });
+        
 
     // Clear the input field
     document.getElementById("inputText").value = "";
