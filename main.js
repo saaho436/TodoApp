@@ -3,15 +3,30 @@ const button = document.getElementById("Addbtn");
 
 button.addEventListener("click", function() {
     const Taskcontainer = document.getElementById("container");
-    const inputTxt = document.getElementById("inputText").value;
+    const inputTxt = document.getElementById("inputText").value.trim();
+    const formattedDate = currentDate.toLocaleDateString(); 
+    const formattedTime = currentDate.toLocaleTimeString();
+    if(inputTxt === ""){
+        window.alert("task cannot be empty");
+        return;
+
+    }
 
     const createdDiv = document.createElement("div");
     createdDiv.classList.add("creatd-div");
     createdDiv.id = arr.length + 1;
 
     const textSpan = document.createElement("span"); // Use a span for the task text
+
+    // Append the text span to the div
     textSpan.textContent = inputTxt;
-    createdDiv.appendChild(textSpan); // Append the text span to the div
+    createdDiv.appendChild(textSpan); 
+
+    const dateTimeSpan=document.createElement("span");
+    dateTimeSpan=`created:${formattedDate} at ${formattedTime}`;
+    createdDiv.appendChild(dateTimeSpan);
+    
+    
 
     const Edit = document.createElement("button");
     Edit.classList.add("edit-btn");
