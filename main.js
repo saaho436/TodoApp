@@ -2,7 +2,7 @@
 const arr = [];
 const button = document.getElementById("Addbtn");
 const check=[];
-const unique=[];
+let unique=[];
 
 button.addEventListener("click", function() {
     const Taskcontainer = document.getElementById("container");
@@ -64,6 +64,8 @@ button.addEventListener("click", function() {
     // Edit button logic
     Edit.addEventListener("click", function() {
         if (Edit.textContent === "Edit") {
+            createdDiv.removeChild(checkBox);
+            createdDiv.removeChild(Delete);
             // Replace the span with an input field to allow editing
             const inputField = document.createElement("input");
             inputField.type = "text";
@@ -75,6 +77,8 @@ button.addEventListener("click", function() {
         } else if (Edit.textContent === "Save") {
             // Save the edited content and replace the input field with the updated text
             textSpan.textContent = createdDiv.querySelector("input").value;
+            createdDiv.replaceChild(textSpan, createdDiv.querySelector("input")); // Replace input with updated span
+
             const currentDate = new Date();
             const editDate = currentDate.toLocaleDateString(); // Format the date (e.g., 9/27/2024)
             const editTime = currentDate.toLocaleTimeString(); // Format the time (e.g., 2:34 PM)
@@ -82,12 +86,8 @@ button.addEventListener("click", function() {
             // editeddate.textContent = ` (Edited on: ${editDate} at ${editTime})`;
             dateSpan.textContent = ` (Added on: ${formattedDate} at ${formattedTime} || Edited on: ${editDate} at ${editTime})`;
             createdDiv.appendChild(editeddate); // Append date and time
-          
-
-
-
-            createdDiv.replaceChild(textSpan, createdDiv.querySelector("input")); // Replace input with updated span
-
+            createdDiv.appendChild(Delete);
+            createdDiv.appendChild(checkBox);
 
             Edit.textContent = "Edit"; // Change "Save" back to "Edit"
         }
@@ -101,29 +101,25 @@ button.addEventListener("click", function() {
      // Clear the input field
     document.getElementById("inputText").value = "";
 
-    checkBox.addEventListener("click",function(){
+    checkBox.addEventListener("click",function(event){
         const checkboxes = document.querySelectorAll('input[name="boxes"]:checked');
         checkboxes.forEach((checkBox)=>{
-            check.push(checkBox.id);
-        // console.log(check);
-        const uniqueele=[...new Set(check)];
-        console.log(uniqueele);
-        unique.push(uniqueele);
-        console.log("unique array"+unique)
+        check.push(checkBox.id);
+        unique=[...new Set(check)];
+        //console.log(uniqueele);
+        //unique.push(uniqueele);
+        console.log(unique);
+        
     });
 
     });
 
     
 
-    deleteAllButton.addEventListener("click",function(check){
-        createdDiv.forEach()
-
+    deleteAllButton.addEventListener("click",function(){
+        console.log(Taskcontainer.createdDiv.id);
     });
 
-
-    // console.log(checkBox.id);
-    // console.log(createdDiv.id);
         
 
     
